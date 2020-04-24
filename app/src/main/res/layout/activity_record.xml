@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    tools:context=".ui.activitys.RecordActivity">
+
+    <include layout="@layout/title"
+
+/>
+    <LinearLayout
+        android:id="@+id/ll"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <com.sh.zsh.code.layout.ShFormLayout
+    app:less_form_row_height="50dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+
+    app:less_form_group_titel="true"
+    android:text="基本信息"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+    <EditText
+
+    app:less_form_title="使用人"
+
+    app:less_form_name="name"
+        android:id="@+id/name"
+    app:less_form_must="true"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    />
+
+    <EditText
+        app:less_form_title="身份证"
+        android:id="@+id/id_number"
+    app:less_form_name="id_number"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    app:less_form_must="true"
+    />
+        <EditText
+            app:less_form_title="车牌号"
+            android:id="@+id/car_number"
+
+            app:less_form_name="car_number"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:less_form_must="true"
+            />
+
+        <EditText
+            app:less_form_title="车架号"
+            android:id="@+id/vin"
+
+            app:less_form_name="vin"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:less_form_must="true"
+            />
+
+        <TextView
+
+            app:less_form_group_titel="true"
+            android:text="图片信息(身份证正反、车辆正面)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </com.sh.zsh.code.layout.ShFormLayout>
+
+    <com.goyourfly.multi_picture.MultiPictureView
+        android:id="@+id/multi_image_view"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:editable="true"
+        app:max="9"
+        app:space="6dp"
+        app:span="3"/>
+    <Button
+        android:background="@drawable/btn_bg_mr"
+
+        android:id="@+id/add"
+
+        android:layout_width="match_parent"
+        android:layout_margin="15dp"
+        android:layout_height="wrap_content"
+        android:text="@string/add"/>
+    </LinearLayout>
+    <com.github.chrisbanes.photoview.PhotoView
+        android:id="@+id/photoview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
