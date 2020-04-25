@@ -19,6 +19,7 @@ import com.example.enterpriseapplication.service.MyMqttService;
 import com.example.enterpriseapplication.ui.fragments.FindFragment;
 import com.example.enterpriseapplication.ui.fragments.MyFragment;
 import com.example.enterpriseapplication.ui.fragments.RecordFragment;
+import com.example.enterpriseapplication.util.NotifictionUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,6 +109,10 @@ public class UserActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        if(!NotifictionUtil.isNotificationEnabled(UserActivity.this)){
+            NotifictionUtil.showNotificationIsFalse(UserActivity.this);
+        }
     }
 
     //隐藏Fragment界面

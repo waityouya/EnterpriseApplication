@@ -1,5 +1,6 @@
 package com.example.enterpriseapplication.ui.activitys;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -35,6 +36,8 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -68,13 +71,16 @@ public class LoginActivity extends AppCompatActivity implements GlobalHandler.Ha
     private Button mLoginButton;
 
     private GlobalHandler mHandler;
-
+    private String [] permissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.CAMERA,Manifest.permission.READ_PHONE_STATE};
+    private List<String> mPermissionList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initWidget();
         setListen();
+        initPermission();
     }
 
     private void initWidget(){
@@ -178,7 +184,19 @@ public class LoginActivity extends AppCompatActivity implements GlobalHandler.Ha
         //销毁移除所有消息，避免内存泄露
         mHandler.removeCallbacks(null);
     }
+    private void initPermission(){
+        mPermissionList.clear();
+        for (int i=0;i<permissions.length;i++){
+            if(ContextCompat.checkSelfPermission(this,permissions[i])!= PackageManager.PERMISSION_GRANTED){
+                mPermissionList.add(permissions[i]);
+            }
+        }
 
+        //申请权限
+        if(mPermissionList.size() >0){
+            ActivityCompat.requestPermissions(this,permissions,1);
+        }
+    }
 
 }
 

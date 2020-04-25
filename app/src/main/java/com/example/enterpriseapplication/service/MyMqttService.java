@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.os.IBinder;
 
 import com.example.enterpriseapplication.util.LogUtil;
+import com.example.enterpriseapplication.util.MyApplication;
+import com.example.enterpriseapplication.util.NotifictionUtil;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -26,10 +28,10 @@ import androidx.annotation.RequiresApi;
 public class MyMqttService extends Service {
     private static MqttAndroidClient mqttAndroidClient;
     private MqttConnectOptions mMqttConnectOptions;
-    public String HOST = "tcp://192.168.0.102:61613";//服务器地址（协议+地址+端口号）
+    public String HOST = "tcp://192.168.43.159:61613";//服务器地址（协议+地址+端口号）
     public String USERNAME = "admin";//用户名
-    public String PASSWORD = "public";//密码
-    public static String PUBLISH_TOPIC = "tourist_enter";//发布主题
+    public String PASSWORD = "password";//密码
+    public static String PUSH_TOPIC = "push_illegal";//订阅主题
     public static String RESPONSE_TOPIC = "message_arrived";//响应主题
     @RequiresApi(api = 21)
     public String CLIENTID = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
@@ -60,7 +62,7 @@ public class MyMqttService extends Service {
      * @param message 消息
      */
     public static void publish(String message) {
-        String topic = PUBLISH_TOPIC;
+        String topic = PUSH_TOPIC;
         Integer qos = 2;
         Boolean retained = false;
         try {
@@ -105,7 +107,7 @@ public class MyMqttService extends Service {
         // last will message
         boolean doConnect = true;
         String message = "{\"terminal_uid\":\"" + CLIENTID + "\"}";
-        String topic = PUBLISH_TOPIC;
+        String topic = PUSH_TOPIC;
         Integer qos = 2;
         Boolean retained = false;
         if ((!message.equals("")) || (!topic.equals(""))) {
@@ -165,7 +167,7 @@ public class MyMqttService extends Service {
         public void onSuccess(IMqttToken arg0) {
             LogUtil.i( "连接成功 ");
             try {
-                mqttAndroidClient.subscribe(PUBLISH_TOPIC, 2);//订阅主题，参数：主题、服务质量
+                mqttAndroidClient.subscribe(PUSH_TOPIC, 2);//订阅主题，参数：主题、服务质量
             } catch (MqttException e) {
                 e.printStackTrace();
             }
@@ -185,10 +187,11 @@ public class MyMqttService extends Service {
         @Override
         public void messageArrived(String topic, MqttMessage message) throws Exception {
             LogUtil.i( "收到消息： " + new String(message.getPayload()));
+            NotifictionUtil.showNotifictionIcon("违法消息",new String(message.getPayload()));
             //收到消息，这里弹出Toast表示。如果需要更新UI，可以使用广播或者EventBus进行发送
            // Toast.makeText(getApplicationContext(), "messageArrived: " + new String(message.getPayload()), Toast.LENGTH_LONG).show();
             //收到其他客户端的消息后，响应给对方告知消息已到达或者消息有问题等
-            response("message arrived");
+            //response("message arrived");
         }
 
         @Override
