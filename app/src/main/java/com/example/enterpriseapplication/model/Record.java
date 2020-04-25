@@ -25,6 +25,12 @@ public class Record {
         this.appToken = token;
     }
 
+    public Record(String driverNumber,int enterpriseId,String token ){
+        this.enterpriseId = enterpriseId;
+        this.driverNumber = driverNumber;
+        this.appToken = token;
+    }
+
     public Record(){
 
     }

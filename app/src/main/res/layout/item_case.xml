@@ -13,12 +13,20 @@
             <ImageView
                 android:layout_margin="5dp"
                 android:id="@+id/iv_w_flag"
-                android:src="@mipmap/weifaicon"
+                android:src="@mipmap/chufa"
                 android:layout_width="40dp"
                 android:layout_height="40dp" />
+            <ImageView
+                android:layout_margin="5dp"
+                android:layout_below="@+id/iv_w_flag"
+                android:id="@+id/iv_n_flag"
+                android:src="@mipmap/name"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
             <TextView
                 android:layout_below="@+id/iv_w_flag"
                 android:text="@string/name1"
+                android:layout_toEndOf="@+id/iv_n_flag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -35,9 +43,18 @@
                 android:layout_margin="5dp"
                 android:textSize="16sp"/>
 
+            <ImageView
+                android:layout_margin="5dp"
+                android:layout_below="@+id/iv_n_flag"
+                android:id="@+id/iv_i_flag"
+                android:src="@mipmap/idnumber"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+
             <TextView
-                android:layout_below="@id/tv_off_name_item"
+                android:layout_below="@id/iv_n_flag"
                 android:layout_width="wrap_content"
+                android:layout_toEndOf="@+id/iv_n_flag"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="5dp"
@@ -54,11 +71,20 @@
                 android:layout_alignParentEnd="true"
                 android:textSize="16sp"/>
 
+            <ImageView
+                android:layout_margin="5dp"
+                android:layout_below="@+id/iv_i_flag"
+                android:id="@+id/iv_t_flag"
+                android:src="@mipmap/laixing"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+
             <TextView
 
-                android:layout_below="@id/tv_off_id_item"
+                android:layout_below="@id/iv_i_flag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/iv_n_flag"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="5dp"
                 android:text="@string/illegal_behavior1"
@@ -75,16 +101,25 @@
 
                 android:textSize="16sp"/>
 
+            <ImageView
+                android:layout_margin="5dp"
+                android:layout_below="@+id/iv_t_flag"
+                android:id="@+id/iv_time_flag"
+                android:src="@mipmap/time"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+
             <TextView
-                android:layout_below="@id/tv_off_type_item"
+                android:layout_below="@id/iv_t_flag"
                 android:text="@string/illegal_time1"
                 android:layout_width="wrap_content"
+                android:layout_toEndOf="@+id/iv_n_flag"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="5dp"
                 android:textSize="16sp"/>
             <TextView
-                android:layout_below="@id/tv_off_type_item"
+                android:layout_below="@id/iv_t_flag"
                 android:id="@+id/tv_off_time_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

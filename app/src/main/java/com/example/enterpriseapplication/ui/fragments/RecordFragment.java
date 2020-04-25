@@ -117,7 +117,7 @@ public class RecordFragment extends Fragment implements GlobalHandler.HandleMsgL
     @Override
     public void onResume() {
         super.onResume();
-        LogUtil.d("resume");
+        LogUtil.d("record：resume");
         mHandler.setHandleMsgListener(this);
     }
 
@@ -198,6 +198,18 @@ public class RecordFragment extends Fragment implements GlobalHandler.HandleMsgL
             });
         }
     }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        // TODO Auto-generated method stub
+        super.onHiddenChanged(hidden);
+        if ( !hidden) {
+            LogUtil.d("record：show");
+            mHandler.setHandleMsgListener(this);
+        }
+    }
+
+
 
     @Override
     public void handleMsg(Message msg) {

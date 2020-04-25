@@ -15,6 +15,7 @@ import android.os.Bundle;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.example.enterpriseapplication.R;
+import com.example.enterpriseapplication.service.MyMqttService;
 import com.example.enterpriseapplication.ui.fragments.FindFragment;
 import com.example.enterpriseapplication.ui.fragments.MyFragment;
 import com.example.enterpriseapplication.ui.fragments.RecordFragment;
@@ -30,7 +31,7 @@ public class UserActivity extends AppCompatActivity {
     private Fragment myFragment;
     private Fragment findFragment;
     private String [] permissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.CAMERA};
+            Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.CAMERA,Manifest.permission.READ_PHONE_STATE};
     private List<String> mPermissionList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class UserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user);
         initView();
         initPermission();
+        MyMqttService.startService(this);
     }
     private void initView(){
         AHBottomNavigation bottomNavigation = findViewById(R.id.bottom_navigation);
