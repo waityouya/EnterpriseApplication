@@ -8,10 +8,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
         android:name=".util.MyApplication"
         android:allowBackup="true"
@@ -21,7 +21,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activitys.RecordActivity"></activity>
+        <activity android:name=".ui.activitys.RecordDetailctivity"></activity>
+        <activity
+            android:name=".ui.activitys.IllegalCaseDetailectivity"
+            android:label="@string/title_activity_illegal_case_detailectivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.activitys.RecordActivity" />
         <activity android:name=".ui.activitys.UserActivity" />
         <activity
             android:name=".ui.activitys.LoginActivity"
@@ -32,8 +37,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name="org.eclipse.paho.android.service.MqttService" /> <!--MqttService-->
-        <service android:name="com.example.enterpriseapplication.service.MyMqttService"/> <!--MyMqttService-->
+
+        <service android:name="org.eclipse.paho.android.service.MqttService" /> <!-- MqttService -->
+        <service android:name=".service.MyMqttService" />
     </application>
 
 </manifest>

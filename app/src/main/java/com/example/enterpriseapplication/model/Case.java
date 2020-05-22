@@ -25,7 +25,7 @@ public class Case implements Serializable {
         String appToken;
         int isAudit;
         int auditType;
-
+    String punishmentName;
         List<String> images;
         public Case(String offPlateNumber,String offName,int offSex,String offBirthPlace,
         String offCertificateType,String offCertificateNumber,String offCertificateValid,String offTime,
@@ -231,5 +231,13 @@ public class Case implements Serializable {
 
     public void setIsAudit(int isAudit) {
         this.isAudit = isAudit;
+    }
+
+    public String getPunishmentName() {
+        return punishmentName;
+    }
+
+    public void setPunishmentName(String punishmentName) {
+        this.punishmentName = punishmentName;
     }
 }

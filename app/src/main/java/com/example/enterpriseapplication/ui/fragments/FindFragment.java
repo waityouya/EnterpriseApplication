@@ -262,6 +262,13 @@ public class FindFragment extends Fragment implements GlobalHandler.HandleMsgLis
                                 case1.setCaseId(object.getInt("caseId"));
                                 case1.setOffType(object.getString("offType"));
                                 case1.setOffTime(object.getString("offTime"));
+                                case1.setOffBirthPlace(object.getString("offBirthPlace"));
+                                case1.setOffPlace(object.getString("offPlace"));
+                                case1.setOffCertificateType(object.getString("offCertificateType"));
+                                case1.setOffPlateNumber(object.getString("offPlateNumber"));
+                                case1.setOffPunishmentType(object.getString("offPunishmentType"));
+                                case1.setPunishmentName(object.getString("punishmentName"));
+                                case1.setOffMoney(object.getInt("offMoney"));
                                 serachCases.add(case1);
 
                             }

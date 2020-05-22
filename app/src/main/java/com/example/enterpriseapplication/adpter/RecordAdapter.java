@@ -2,14 +2,18 @@ package com.example.enterpriseapplication.adpter;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
 import com.example.enterpriseapplication.R;
 import com.example.enterpriseapplication.model.Record;
+import com.example.enterpriseapplication.ui.activitys.RecordDetailctivity;
 
 import java.util.ArrayList;
 
@@ -45,7 +49,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         if(viewHolder instanceof  ViewHolder){
             ViewHolder ViewHolder1 = (ViewHolder) viewHolder;
-            Record record = list.get(position);
+            final Record record = list.get(position);
             ViewHolder1.tv_name.setText(record.getDriverName());
             ViewHolder1.car_number.setText( record.getPlateNumber());
             if(record.getAduit() == 0){
@@ -56,7 +60,18 @@ public class RecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 ViewHolder1.tv_record_aditu.setText( "审核未通过");
             }
             ViewHolder1.tv_record_time.setText( record.getUpTime());
+            ViewHolder1.imageViewMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, RecordDetailctivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("record",record);
+                    intent.putExtras(bundle);
+                    mContext.startActivity(intent);
+                }
+            });
         }
+
 
 
     }
@@ -72,7 +87,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         TextView tv_name;
         TextView tv_record_aditu;
         TextView tv_record_time;
-
+        ImageView imageViewMore;
 
         ViewHolder(View view) {
             super(view);
@@ -80,7 +95,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             car_number = view.findViewById(R.id.tv_record_car_number_item);
             tv_record_aditu = view.findViewById(R.id.aduit);
             tv_record_time = view.findViewById(R.id.tv_record_time_item);
-
+            imageViewMore = view.findViewById(R.id.iv_more);
 
 
         }

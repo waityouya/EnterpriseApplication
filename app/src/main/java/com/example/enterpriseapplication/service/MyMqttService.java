@@ -33,9 +33,11 @@ public class MyMqttService extends Service {
     public String PASSWORD = "password";//密码
     public static String PUSH_TOPIC = "push_illegal";//订阅主题
     public static String RESPONSE_TOPIC = "message_arrived";//响应主题
+
     @RequiresApi(api = 21)
     public String CLIENTID = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
             ? Build.getSerial() : Build.SERIAL;//客户端ID，一般以客户端唯一标识符表示，这里用设备序列号表示
+
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -52,7 +54,8 @@ public class MyMqttService extends Service {
     /**
      * 开启服务
      */
-    public static void startService(Context mContext) {
+    public static void startService(Context mContext,String userId) {
+        PUSH_TOPIC  += userId;
         mContext.startService(new Intent(mContext, MyMqttService.class));
     }
 
@@ -186,8 +189,8 @@ public class MyMqttService extends Service {
 
         @Override
         public void messageArrived(String topic, MqttMessage message) throws Exception {
-            LogUtil.i( "收到消息： " + new String(message.getPayload()));
-            NotifictionUtil.showNotifictionIcon("违法消息",new String(message.getPayload()));
+            LogUtil.i( "收到消息： " + new String(message.getPayload(),"GBK"));
+            NotifictionUtil.showNotifictionIcon("违法消息",new String(message.getPayload(),"GBK"));
             //收到消息，这里弹出Toast表示。如果需要更新UI，可以使用广播或者EventBus进行发送
            // Toast.makeText(getApplicationContext(), "messageArrived: " + new String(message.getPayload()), Toast.LENGTH_LONG).show();
             //收到其他客户端的消息后，响应给对方告知消息已到达或者消息有问题等

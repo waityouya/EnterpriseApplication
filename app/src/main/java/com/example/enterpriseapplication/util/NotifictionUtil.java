@@ -6,6 +6,7 @@ import android.app.AppOpsManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -14,12 +15,16 @@ import android.net.Uri;
 import android.os.Build;
 
 import com.example.enterpriseapplication.R;
+import com.example.enterpriseapplication.model.Case;
+import com.example.enterpriseapplication.model.ReturnLoginInfo;
+import com.example.enterpriseapplication.ui.activitys.IllegalCaseDetailectivity;
 import com.example.enterpriseapplication.ui.activitys.LoginActivity;
 import com.example.enterpriseapplication.ui.activitys.RecordActivity;
 import com.flyco.animation.BounceEnter.BounceTopEnter;
 import com.flyco.animation.SlideExit.SlideBottomExit;
 import com.flyco.dialog.listener.OnBtnClickL;
 import com.flyco.dialog.widget.NormalDialog;
+import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -97,8 +102,11 @@ public class NotifictionUtil {
 
     }
 
-    private static void sendSubscribeMsg(String title, String text) {
+    private static void sendSubscribeMsg(String title, String text,String contentText) {
         NotificationManager manager = (NotificationManager) MyApplication.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        Intent intent = new Intent(MyApplication.getContext(), IllegalCaseDetailectivity.class);//将要跳转的界面
+        intent.putExtra("pushMessage",contentText);
+        PendingIntent intentPend = PendingIntent.getActivity(MyApplication.getContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         Notification notification = new NotificationCompat.Builder(MyApplication.getContext(), "push")
                 .setContentTitle(title)
                 .setContentText(text)
@@ -106,30 +114,33 @@ public class NotifictionUtil {
                 .setSmallIcon(R.mipmap.qiye)
                 .setLargeIcon(BitmapFactory.decodeResource(MyApplication.getContext().getResources(), R.mipmap.qiye))
                 .setAutoCancel(true)
+                .setContentIntent(intentPend)
                 .build();
+
         manager.notify(2, notification);
     }
 
 
     public static void showNotifictionIcon(String title, String contentText) {
+        Case aCase = new Gson().fromJson(contentText,Case.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             String channelId = "push";//设置通道的唯一ID
             String channelName = "推送消息";//设置通道名
             int importance = NotificationManager.IMPORTANCE_HIGH;//设置通道优先级
-            createNotificationChannel(channelId, channelName, importance, title, contentText);
+            createNotificationChannel(channelId, channelName, importance, title, aCase.getOffPlateNumber()+"车辆违法信息推送",contentText);
         } else {
-            sendSubscribeMsg(title, contentText);
+            sendSubscribeMsg(title, aCase.getOffPlateNumber()+"车辆违法信息推送",contentText);
         }
 
 
     }
 
     @TargetApi(Build.VERSION_CODES.O)
-    private static void createNotificationChannel(String channelId, String channelName, int importance, String title, String text) {
+    private static void createNotificationChannel(String channelId, String channelName, int importance, String title, String text,String contentText) {
         NotificationChannel channel = new NotificationChannel(channelId, channelName, importance);
         NotificationManager notificationManager = (NotificationManager) MyApplication.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.createNotificationChannel(channel);
-        sendSubscribeMsg(title, text);
+        sendSubscribeMsg(title, text,contentText);
     }
 
 

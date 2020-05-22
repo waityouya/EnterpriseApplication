@@ -176,6 +176,7 @@ public class RecordFragment extends Fragment implements GlobalHandler.HandleMsgL
             }
         });
 
+
     }
 
     private void getData(String userId, String token) {
@@ -238,7 +239,7 @@ public class RecordFragment extends Fragment implements GlobalHandler.HandleMsgL
                                 record.setUpTime(object.getString("upTime"));
                                 record.setPlateNumber(object.getString("plateNumber"));
                                 record.setNotReason(object.getString("notReason"));
-                                record.setvIN(object.getString("vIN"));
+                                record.setVin(object.getString("vin"));
                                 mRecords.add(record);
                             }
 

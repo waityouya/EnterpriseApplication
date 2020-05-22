@@ -26,6 +26,8 @@
     <string name="punishment_money">处罚金额</string>
     <string name="payment">交款方式</string>
     <string name="car_number">车辆车牌</string>
+    <string name="car_number1">车辆车牌:</string>
+    <string name="car_vin">车架号:</string>
     <string name="sex_n">男</string>
     <string name="sex_v">女</string>
     <string name="id_photo_hini">左边扫描身份证正面，右边扫描反面</string>
@@ -34,7 +36,7 @@
     <string name="default_native_place">北京市</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="search_hint">输入所查询的驾驶员身份证或车牌号</string>
+    <string name="search_hint">身份证/车牌号</string>
     <string name="empty_h1">暂时无相关违法数据</string>
     <string name="empty_h2">（如果是查询无数据，请尝试点击搜索图标）</string>
     <string name="empty_h3">（如果是当前无数据，请尝试下拉刷新数据）</string>
@@ -44,4 +46,21 @@
     <string name="tag_is_agree">是否通过：</string>
     <string name="tag_hini">输入您审核的意见</string>
     <string name="tag_input">审核的意见</string>
+    <string name="title_activity_settings">Settings</string>
+
+
+    >
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+    <string name="title_activity_illegal_case_detailectivity">违法消息详情如下</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

@@ -1,13 +1,15 @@
 package com.example.enterpriseapplication.model;
 
-public class Record {
+import java.io.Serializable;
+
+public class Record implements Serializable {
     int recordId;
     int enterpriseId;
     String driverName;
     String plateNumber;
     String imagerUrl;
     int aduit;
-    String vIN;
+    String vin;
     String driverNumber;
     String notReason;
     String enterpriName;
@@ -15,13 +17,17 @@ public class Record {
     String upTime;
     String aduitTime;
 
-    public Record(int enterpriseId,String driverName,String plateNumber,String driverNumber,
-                  String vin,String token){
+    public void setAduit(int aduit) {
+        this.aduit = aduit;
+    }
+
+    public Record(int enterpriseId, String driverName, String plateNumber, String driverNumber,
+                  String vin, String token){
         this.enterpriseId = enterpriseId;
         this.driverName = driverName;
         this.plateNumber = plateNumber;
         this.driverNumber = driverNumber;
-        this.vIN  = vin;
+        this.vin  = vin;
         this.appToken = token;
     }
 
@@ -88,17 +94,15 @@ public class Record {
         return recordId;
     }
 
-    public String getvIN() {
-        return vIN;
+
+    public String getVin() {
+        return vin;
     }
 
-    public void setvIN(String vIN) {
-        this.vIN = vIN;
+    public void setVin(String vin) {
+        this.vin = vin;
     }
 
-    public void setAduit(int aduit) {
-        this.aduit = aduit;
-    }
     public void setDriverName(String driverName) {
         this.driverName = driverName;
     }

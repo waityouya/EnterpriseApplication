@@ -34,15 +34,19 @@ public class UserActivity extends AppCompatActivity {
     private String [] permissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.CAMERA,Manifest.permission.READ_PHONE_STATE};
     private List<String> mPermissionList = new ArrayList<>();
+    private String userId;
+    private String userNmae;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
         initView();
         initPermission();
-        MyMqttService.startService(this);
+        MyMqttService.startService(this,userId);
     }
     private void initView(){
+        userId = getIntent().getStringExtra("userId");
+        userNmae = getIntent().getStringExtra("userName");
         AHBottomNavigation bottomNavigation = findViewById(R.id.bottom_navigation);
 
         AHBottomNavigationItem item1 = new AHBottomNavigationItem("备案",R.drawable.beian);
@@ -94,7 +98,7 @@ public class UserActivity extends AppCompatActivity {
                         break;
                     case 2:
                         if(myFragment == null){
-                            myFragment = MyFragment.newInstance("1","2");
+                            myFragment = MyFragment.newInstance(userNmae,"2");
                             transaction.add(R.id.content,myFragment);
                         }else {
                             transaction.show(myFragment);

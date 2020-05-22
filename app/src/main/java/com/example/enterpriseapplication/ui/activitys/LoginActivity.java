@@ -74,6 +74,7 @@ public class LoginActivity extends AppCompatActivity implements GlobalHandler.Ha
     private String [] permissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.CAMERA,Manifest.permission.READ_PHONE_STATE};
     private List<String> mPermissionList = new ArrayList<>();
+    private String mUserName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +99,7 @@ public class LoginActivity extends AppCompatActivity implements GlobalHandler.Ha
             @Override
             public void onClick(View v) {
                 String userName = mUserNameEditText.getText().toString();
+                mUserName =userName;
                 String passWord = mPassWordEditText.getText().toString();
                 if(userName.isEmpty() || passWord.isEmpty()){
                     ToastUtil.showShortToast("请填写完整");
@@ -149,6 +151,7 @@ public class LoginActivity extends AppCompatActivity implements GlobalHandler.Ha
                         Intent intent = new Intent(LoginActivity.this,UserActivity.class);
                         //Log.i("loginsucess",String.valueOf(returnLoginInfo.getData().getUid()));
                         intent.putExtra("userId",returnLoginInfo.getData().getUserId());
+                        intent.putExtra("userName",mUserName);
                         //intent.putExtra("token")
                         //token保存到本地
                         SharedPreferences sp = getSharedPreferences("login", 0);
